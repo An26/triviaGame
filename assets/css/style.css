@@ -1,0 +1,25 @@
+body {
+	background-image: url(../images/background.jpg);	
+	background-size: 1000px;
+	color: white;
+	
+}
+
+.container {
+	float: none;
+	text-align: center;
+	background-color: maroon;
+	border: black, solid, 50px;
+	width: 80%;
+	height: 500px;
+
+
+}
+
+#enter {
+	display: none;
+}
+
+#restart {
+	display: none;
+}
