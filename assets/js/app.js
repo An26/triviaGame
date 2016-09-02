@@ -15,69 +15,63 @@ var triviaQuestionArray = [{
 var questionNumber = 1;
 var correct = 0;
 var incorrect = 0;
-var countDown = 30;
+var number = 30;
 
 function addClickListeners() {
 	$('#start').click(triviaGame);
-	$('#next').click(triviaGame);
-	$('#restart').click(triviaGame);
 }
 
 function triviaGame() {
-	console.log(questionNumber);
-	$('#start').hide();
-	$('#restart').hide();
-	$('#next').show();
+	for (var i = 0; i < triviaQuestionArray.length; i++){
 
-	$('#questionNumber').empty();
-	$('#triviaQuestion').empty();
-	$('#answerOption').empty();
+			runTimer();
+			console.log(questionNumber);
+			$('#start').hide();
 
-	if (questionNumber > 3) {
-		reset();
+			$('#questionNumber').empty();
+			$('#triviaQuestion').empty();
+			$('#answerOption').empty();
+			$('#timerCountDown').empty();
+
+			$('#questionNumber').append("Question Number: " + questionNumber);
+			console.log(questionNumber);
+			$('#triviaQuestion').append(triviaQuestionArray[questionNumber - 1].question);
+			console.log(triviaQuestionArray[(questionNumber) - 1].question);
+			$('#answerOption').append(triviaQuestionArray[questionNumber - 1].possibleAnswers);
+			console.log(triviaQuestionArray[questionNumber - 1].possibleAnswers);
+			questionNumber++;
+			console.log(questionNumber);	
+			
 	}
-
-	$('#questionNumber').append("Question Number: " + questionNumber);
-		console.log(questionNumber);
-	$('#triviaQuestion').append(triviaQuestionArray[questionNumber - 1].question);
-		console.log(triviaQuestionArray[(questionNumber) - 1].question);
-	$('#answerOption').append(triviaQuestionArray[questionNumber - 1].possibleAnswers);
-		console.log(triviaQuestionArray[questionNumber - 1].possibleAnswers);
-	
-	questionNumber++;
-	console.log(questionNumber);
-
-		timer();
-}
+} // for loop
 
 function reset () {
 		console.log(questionNumber);
 		$('#triviaQuestion').empty();
 		$('#answerOption').empty();
-
 		$('#questionNumber').hide();
 		$('#restart').show();
 		$('#next').hide();
-
 		$('triviaQuestion').append("Game Over!")
 }
 
-function timer(){
-	setTimeout(decrement, 3000);
-	console.log("3 seconds");
+function runTimer(){
+	counter = setInterval(decrement, 1000);
 }
 
 function decrement(){
-	countDown--;
-	$('#timerCountdown').html("Time Left: " + countDown);
+    number--;
+    $('#timerCountDown').html(number);
+    if (number === 0){
+    clearInterval(counter);
+    }
 }
 
 $(document).ready(function(){
-
 	addClickListeners();
-
 
 });
 
 
 
+//clear timeout
